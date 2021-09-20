@@ -1,7 +1,7 @@
-install.packages("tidyverse")
-install.packages("dplyr")
-install.packages("readxl")
-install.packages("openxlsx")
+require("tidyverse")
+require("dplyr")
+require("readxl")
+require("openxlsx")
 library(openxlsx)
 library(readxl)
 library(dplyr)
@@ -344,6 +344,8 @@ Maquina_continua <- function(matrix_trocas,matrix_encomendas,tempo_total){
 
 
 #=====================================================================================#
+" A função custos vai ser utilizada para calcular o custo de todos os parâmetros envolvidos com toda a produção."
+
 custos <- function(custos_funcionamento,custos_manutenção,custos_continua,linhasProdução,MaquinaContinua,turnos,opcao){
   
     custo_total <- 0
@@ -406,9 +408,12 @@ custos <- function(custos_funcionamento,custos_manutenção,custos_continua,linhas
 }
 
 #=====================================================================================#
+"Encontra a combinação de modos e linha de produção que tem custo mínimo.
+esta fuão vai utilizar todas as outras funções"
 
 minimo <- function(dados_sheet1,dados_sheet2,dados_sheet3,dados_sheet4,numero_iteracoes=5000){
-
+  
+  
   custos_funcionamento <- c(dados_sheet4[1,],dados_sheet4[2,])
   custos_manutenção <- c(dados_sheet4[3,],dados_sheet4[4,])
   custos_continua <- dados_sheet4[5,]
